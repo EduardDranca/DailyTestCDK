@@ -25,7 +25,7 @@ class DailymailStackTest(Stack):
 
         scheduled_lambda.add_to_role_policy(iam.PolicyStatement(effect=iam.Effect.ALLOW,
                                                                 resources=[
-                                                                    "arn:aws:ses:eu-north-1:916886530732:identity/rapanosul69@gmail.com"],
+                                                                    "arn:aws:ses:region-id:identity/example@domain.com"],
                                                                 actions=["ses:SendEmail", "ses:SendRawEmail",
                                                                          "ses:SendTemplatedEmail"]
                                                                 ))
@@ -36,7 +36,7 @@ class DailymailStackTest(Stack):
         rule = events.Rule(self, "Rule", schedule=events.Schedule.rate(Duration.hours(24)))
 
         rule.add_target(aws_events_targets.LambdaFunction(scheduled_lambda, event=events.RuleTargetInput.from_object(
-            {"content": "Your daily CDK", "address": "rapanosul69@gmail.com"}), retry_attempts=1))
+            {"content": "Your daily CDK", "address": "example@domain.com"}), retry_attempts=1))
 
         bucket = aws_s3.Bucket(self, "TestBucket", bucket_name="testbucketcdk12412162234155")
 
