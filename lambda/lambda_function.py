@@ -2,10 +2,10 @@ import boto3
 ses = boto3.client('ses')
 
 
-def handler(event, context):
-    content = event["detail"]["content"][0]
-    address = event["detail"]["address"][0]
-    source = event["detail"]["address"][0]
+def lambda_handler(event, context):
+    content = event["content"]
+    address = event["address"]
+    source = event["address"]
     mail = ses.send_email(Destination={
         'ToAddresses': [address]
     },
@@ -24,4 +24,3 @@ def handler(event, context):
         },
         Source=source
     )
-
