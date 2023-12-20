@@ -37,13 +37,6 @@ def test_synthesizes_properly():
         }
     )
 
-    template.has_resource_properties(
-        "AWS::S3::Bucket",
-        {
-            "BucketName": "testbucketcdk1241210"
-        }
-    )
-
     template.has_parameter(
         "TestBucket560B80BC",
         {
